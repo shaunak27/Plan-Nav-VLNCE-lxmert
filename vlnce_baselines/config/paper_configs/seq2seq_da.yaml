@@ -1,0 +1,25 @@
+BASE_TASK_CONFIG_PATH: habitat_extensions/config/vlnce_global_task.yaml
+
+USE_CPU: False
+SIMULATOR_GPU_ID: 0
+TORCH_GPU_ID: 0
+NUM_PROCESSES: 1
+TENSORBOARD_DIR: data/out/paper/tensorboard_dirs/seq2seq_da
+CHECKPOINT_FOLDER: data/out/paper/checkpoints/seq2seq_da
+EVAL_CKPT_PATH_DIR: data/out/paper/checkpoints/seq2seq_da
+
+TRAINER_NAME: "speaker_dagger" 
+ENV_NAME:  "VLNCEDaggerEnv"
+
+EVAL:
+  USE_CKPT_CONFIG: False
+  SPLIT: val_unseen
+  EPISODE_COUNT: 50000
+
+DAGGER:
+  ITERATIONS: 10
+  EPOCHS: 4
+  UPDATE_SIZE: 5000
+  BATCH_SIZE: 5
+  P: 0.75
+  LMDB_FEATURES_DIR: data/trajectories_dirs/seq2seq/global_speaker_da_trajectories.lmdb

@@ -1,0 +1,63 @@
+BASE_TASK_CONFIG_PATH: habitat_extensions/config/vlnce_dw_task.yaml
+
+USE_CPU: True
+SIMULATOR_GPU_ID: 0
+TORCH_GPU_ID: 0
+SEED: 0
+NUM_PROCESSES: 1
+NUM_UPDATES: 10000
+
+TENSORBOARD_DIR: data/out/ppo/tensorboard_dirs/dwp_seq2seq
+CHECKPOINT_FOLDER: data/out/ppo/checkpoints/dwp_seq2seq
+EVAL_CKPT_PATH_DIR: data/out/ppo/checkpoints/dwp_seq2seq
+VIDEO_DIR: data/out/ppo/videos/dwp_seq2seq
+VIDEO_OPTION: ["disk"]
+LOG_FILE: "ppo_seq2seq_dwp.log"
+
+TRAINER_NAME: "dwp_ppo"
+ENV_NAME:  "MapNavEnv"
+
+# new config from avn
+VISUALIZATION_OPTION: ["top_down_map"]
+MASKING: True
+ENCODE_RGB: False # TODO: set to True
+ENCODE_DEPTH: True
+TEST_EPISODE_COUNT: 2
+
+EVAL:
+  USE_CKPT_CONFIG: False
+  SPLIT: val_seen
+  EPISODE_COUNT: 100
+
+RL:
+  SUCCESS_REWARD: 10.0
+  SLACK_REWARD: -0.01
+  WITH_TIME_PENALTY: True
+  WITH_DISTANCE_REWARD: True
+  DISTANCE_REWARD_SCALE: 0.25
+  WITH_PREDICTION_REWARD: False
+  GOAL_PREDICTION_SCALE: 1.0
+
+  PPO:
+    # ppo params
+    clip_param: 0.1
+    ppo_epoch: 4
+    num_mini_batch: 1
+    value_loss_coef: 0.5
+    entropy_coef: 0.02
+    lr: 4e-3
+    eps: 1e-5
+    max_grad_norm: 0.5
+    # decide the length of history that ppo encodes
+    num_steps: 150
+    hidden_size: 512
+    use_gae: True
+    gamma: 0.99
+    tau: 0.95
+    use_linear_clip_decay: True
+    use_linear_lr_decay: True
+    use_exponential_lr_decay: False
+    exp_decay_lambda: 5.0
+    # window size for calculating the past rewards
+    reward_window_size: 50
+

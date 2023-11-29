@@ -1,0 +1,14 @@
+attrs>=19.1.0
+dtw==1.4.0
+fastdtw==0.3.4
+gym==0.10.9
+lmdb
+msgpack_numpy
+numpy
+torch>=1.6.0
+torchvision>=0.5.0
+tqdm>=4.0.0
+torchsummary
+networkx
+transformers
+wget

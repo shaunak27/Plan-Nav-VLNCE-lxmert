@@ -1,0 +1,68 @@
+BASE_TASK_CONFIG_PATH: habitat_extensions/config/vlnce_global_task_lxmert.yaml
+
+USE_CPU: False
+SIMULATOR_GPU_ID: 0
+TORCH_GPU_ID: 0
+NUM_PROCESSES: 1
+
+TENSORBOARD_DIR: data/out/dagger/tensorboard_dirs/lxmert_cma_global_exp
+CHECKPOINT_FOLDER: data/out/dagger/checkpoints/lxmert_cma_global_exp
+EVAL_CKPT_PATH_DIR: data/out/dagger/checkpoints/lxmert_cma_global_exp
+VIDEO_DIR: data/out/dagger/videos/lxmert_cma_global_exp
+VIDEO_OPTION: [] #["disk"]
+LOG_FILE: "dagger_lxmert_cma_global_exp.log"
+
+TRAINER_NAME: "speaker_dagger" 
+ENV_NAME:  "VLNCEDaggerEnv" 
+
+EVAL:
+  USE_CKPT_CONFIG: False
+  SPLIT: val_unseen
+  EPISODE_COUNT: 100
+
+DAGGER:
+  ITERATIONS: 1
+  EPOCHS: 45
+  # reduce parameter update_size for testing purposes
+  UPDATE_SIZE: 1000
+  BATCH_SIZE: 1
+  P: 1.0
+  
+  PRELOAD_LMDB_FEATURES: False
+  LMDB_FEATURES_DIR: data/trajectories_dirs/lxmert_cma/global_trajectories
+
+  # Trajectory database
+  PRELOAD_LMDB_FEATURES: False
+  LMDB_RESUME: False
+  LMDB_FEATURES_DIR: data/trajectories_dirs/lxmert_cma/global_trajectories
+  LMDB_PROGRESS_FILE: data/trajectories_dirs/lxmert_cma/global_progress.txt
+  LMDB_COMMIT_FREQUENCY: 50
+
+MODEL:
+  INSTRUCTION_ENCODER:
+    use_pretrained_embeddings: True
+
+  LXMERT:
+    # frcnn bboxes
+    vis_len: 20
+    vis_output_size: 512
+
+    # tokens
+    lng_len: 160
+    lng_output_size: 512
+
+    use_cma: True
+    use_pooled: False
+  
+  PROGRESS_MONITOR:
+    use: True
+
+INFERENCE:
+  SPLIT: val_seen
+  CKPT_PATH: data/out/dagger/checkpoints/lxmert_cma_global_exp/ckpt.14.pth 
+  PREDICTIONS_FILE: predictions.json  # where to save your agent's generated trajectories
+  USE_CKPT_CONFIG: False
+  INFERENCE_NONLEARNING: False
+  NONLEARNING:
+    AGENT: RandomAgent 
+

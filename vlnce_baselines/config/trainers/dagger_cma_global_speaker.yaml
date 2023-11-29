@@ -1,0 +1,40 @@
+BASE_TASK_CONFIG_PATH: habitat_extensions/config/vlnce_global_speaker_task.yaml
+
+USE_CPU: True
+SIMULATOR_GPU_ID: 0
+TORCH_GPU_ID: 0
+NUM_PROCESSES: 4
+SENSORS: ["RGB_SENSOR", "DEPTH_SENSOR", "SEMANTIC_SENSOR"]
+TENSORBOARD_DIR: data/out/dagger/tensorboard_dirs/cma_global_speaker
+CHECKPOINT_FOLDER: data/out/dagger/checkpoints/cma_global_speaker
+EVAL_CKPT_PATH_DIR: data/out/dagger/checkpoints/cma_global_speaker
+VIDEO_DIR: data/out/dagger/videos/cma_global_speaker
+VIDEO_OPTION: [] #["disk"]
+LOG_FILE: "dagger_cma_global_speaker.log"
+
+SENSORS: ["RGB_SENSOR", "DEPTH_SENSOR", "SEMANTIC_SENSOR"]
+TRAINER_NAME: "speaker_dagger" 
+ENV_NAME:  "VLNCEDaggerEnv" 
+
+
+EVAL:
+  USE_CKPT_CONFIG: False
+  SPLIT: val_unseen
+  EPISODE_COUNT: 100
+
+DAGGER:
+  ITERATIONS: 1
+  EPOCHS: 45
+  # reduce parameter update_size for testing purposes
+  UPDATE_SIZE: 100 
+  BATCH_SIZE: 5
+  P: 1.0
+  PRELOAD_LMDB_FEATURES: False
+  LMDB_FEATURES_DIR: data/trajectories_dirs/cma/global_speaker_trajectories
+
+MODEL:
+  INSTRUCTION_ENCODER:
+    bidirectional: True
+
+  CMA:
+    use: True

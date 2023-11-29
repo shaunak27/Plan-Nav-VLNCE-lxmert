@@ -1,0 +1,57 @@
+# ------------------------------------------------------------------------------
+# CONFIGURATION FILE FOR
+#     Local Planning (Waypoint) Task
+# ------------------------------------------------------------------------------
+ENVIRONMENT:
+  MAX_EPISODE_STEPS: 500
+SIMULATOR:
+  AGENT_0:
+    SENSORS: [
+      RGB_SENSOR, 
+      DEPTH_SENSOR
+    ]
+  FORWARD_STEP_SIZE: 0.25
+  TURN_ANGLE: 15
+  HABITAT_SIM_V0:
+    GPU_DEVICE_ID: 0
+    ALLOW_SLIDING: True
+  RGB_SENSOR:
+    WIDTH: 224    # used for pretrained ResNet50
+    HEIGHT: 224
+  DEPTH_SENSOR:
+    WIDTH: 256    # used for pretrained DDPPO ResNet50
+    HEIGHT: 256
+TASK:
+  TYPE: WaypointTask-v0
+  SUCCESS_DISTANCE: 2.0
+  POSSIBLE_ACTIONS: [
+    STOP, 
+    MOVE_FORWARD, 
+    TURN_LEFT, 
+    TURN_RIGHT
+  ]
+  SENSORS: [
+    POINTGOAL_SENSOR,
+  ]
+  POINTGOAL_SENSOR:
+    GOAL_FORMAT: POLAR
+    DIMENSIONALITY: 2
+  GOAL_SENSOR_UUID: "pointgoal"
+  MEASUREMENTS: [
+    DISTANCE_TO_GOAL, 
+    COLLISION_DISTANCE,
+    COLLISION_COUNT,
+    PATH_LENGTH,
+    STEPS_TAKEN,
+    SUCCESS,
+    SPL
+  ]
+  SPL:
+    SUCCESS_DISTANCE: 2.0
+  SUCCESS:
+    SUCCESS_DISTANCE: 2.0
+DATASET:
+  TYPE: Waypoint-v0
+  SPLIT: train
+  DATA_PATH: data/datasets/waypoints/v0/{split}/{split}.json.gz
+  SCENES_DIR: data/scene_datasets/

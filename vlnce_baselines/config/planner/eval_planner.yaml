@@ -1,0 +1,145 @@
+ENVIRONMENT:
+  MAX_EPISODE_STEPS: 500
+  ITERATOR_OPTIONS:
+    SHUFFLE: False
+SIMULATOR:
+  TYPE: Sim-v0
+  AGENT_0:
+    SENSORS: [RGB_SENSOR, DEPTH_SENSOR]
+  FORWARD_STEP_SIZE: 0.25
+  TURN_ANGLE: 15
+  HABITAT_SIM_V0:
+    GPU_DEVICE_ID: 0
+  RGB_SENSOR:
+    WIDTH: 224
+    HEIGHT: 224
+  DEPTH_SENSOR:
+    WIDTH: 256
+    HEIGHT: 256
+TASK:
+  TYPE: WaypointTask-v0
+  SUCCESS_DISTANCE: 1.5
+  SENSORS: [
+    POINTGOAL_SENSOR,
+  ]
+  POINTGOAL_SENSOR:
+    GOAL_FORMAT: POLAR
+    DIMENSIONALITY: 2
+  GOAL_SENSOR_UUID: "pointgoal"
+  POSSIBLE_ACTIONS: [
+    STOP, 
+    MOVE_FORWARD, 
+    TURN_LEFT, 
+    TURN_RIGHT
+  ]
+  MEASUREMENTS: [
+    COLLISION_DISTANCE,
+    COLLISION_COUNT,
+    DISTANCE_TO_GOAL,
+    TOP_DOWN_MAP,
+    SUCCESS,
+    SPL,
+    ORACLE_SUCCESS,
+    PATH_LENGTH,
+  ]
+  PATH_LENGTH:
+    TYPE: "PathLength"
+  SPL:
+    SUCCESS_DISTANCE: 1.5
+  COLLISION_DISTANCE:
+    TYPE: "CollisionDistance"
+  COLLISION_COUNT:
+    TYPE: "CollisionCount"
+  SUCCESS:
+    SUCCESS_DISTANCE: 1.5
+  ORACLE_SUCCESS:
+    TYPE: "OracleSuccess"
+    SUCCESS_DISTANCE: 1.5
+DATASET:
+  TYPE: Waypoint-v0
+  SPLIT: val_unseen
+  BATCH: valid
+  BASE_PATH: data/datasets/waypoints/v2/valid
+  DATA_PATH: data/datasets/waypoints/v2/valid/{split}/{split}.json.gz
+  SCENES_DIR: data/scene_datasets/
+SIMULATOR_GPU_ID: 0
+TORCH_GPU_ID: 0
+NUM_PROCESSES: 1
+# ------------------------------------------------------------------------------
+CKPT_NAME: ckpt.16.pth
+LOAD_CKPT_PATH: data/checkpoints/
+VLNCE_PATH: data/datasets/vlnce/
+VIDEO_DIR: data/out/planner/videos/test1
+GLOBAL_STATS_FILE: data/datasets/r2r/pred/global_stats.json
+LOG_FILE: "local_planner_unseen.log"
+LOG_UPDATE: 50
+VIDEO_OPTION: [] # ["disk"] #  # options: "disk", "tensorboard"
+LOCAL_PLANNER: True
+EVAL:
+  USE_CKPT_CONFIG: False
+  SPLIT: val_unseen
+  EPISODE_COUNT: 1000000
+RL:
+  FORWARD_STEP_SIZE: 0.25
+  TURN_ANGLE_SIZE: 15
+  SUCCESS_MEASURE: "success"
+  SLACK_REWARD: -0.001
+  SUCCESS_REWARD: 2.5
+  DISTANCE_REWARD:
+    COMPUTE: True
+    MEASURE: "distance_to_goal"
+  COLLISION_COUNT_REWARD:
+    COMPUTE: False
+    MEASURE: "collision_count" 
+    THRESH: 5
+    REWARD: -0.004
+  COLLISION_DISTANCE_REWARD:
+    COMPUTE: False
+    MEASURE: "collision_distance" 
+    THRESH: 0.2
+    REWARD: -0.004
+  PPO: 
+    clip_param: 0.1
+    ppo_epoch: 4
+    # This was 4 in the paper
+    num_mini_batch: 2
+    value_loss_coef: 0.5
+    entropy_coef: 0.01
+    lr: 2.5e-4
+    eps: 1.e-5
+    max_grad_norm: 0.5
+    num_steps: 128
+    hidden_size: 512
+    use_gae: True
+    gamma: 0.99
+    tau: 0.95
+    use_linear_clip_decay: True
+    use_linear_lr_decay: True
+    reward_window_size: 50
+    use_normalized_advantage: False
+MODEL:
+  POLICY: "seq2seq"
+  # on GT trajectories in the training set
+  inflection_weight_coef: 3.2
+  ablate_depth: False
+  ablate_rgb: False
+  ablate_pointgoal: False
+  RGB_ENCODER:
+    cnn_type: "TorchVisionResNet50"
+    output_size: 256
+  DEPTH_ENCODER:
+    # 'VlnResnetDepthEncoder' or 'SimpleDepthCNN'
+    cnn_type: "VlnResnetDepthEncoder"
+    output_size: 128
+    # type of resnet to use
+    backbone: "resnet50"
+    # path to DDPPO resnet weights
+    ddppo_checkpoint: "data/ddppo-models/gibson-2plus-resnet50.pth"
+  STATE_ENCODER:
+    hidden_size: 512
+    rnn_type: "GRU"
+  SEQ2SEQ:
+    use_prev_action: False
+  PROGRESS_MONITOR:
+    use: False
+    alpha: 1.0  # loss multiplier

@@ -1,0 +1,25 @@
+BASE_TASK_CONFIG_PATH: habitat_extensions/config/vlnce_global_task.yaml
+
+USE_CPU: False
+SIMULATOR_GPU_ID: 0
+TORCH_GPU_ID: 0
+NUM_PROCESSES: 1
+
+TRAINER_NAME: "speaker_dagger" 
+ENV_NAME:  "VLNCEDaggerEnv"
+
+INFERENCE:
+  SPLIT: test
+  USE_CKPT_CONFIG: False
+  CKPT_PATH: data/checkpoints/cma_da/ckpt.15.pth #REPLACE
+  PREDICTIONS_FILE: predictions.json
+
+MODEL:
+  INSTRUCTION_ENCODER:
+    bidirectional: True
+
+  CMA:
+    use: True
+
+  PROGRESS_MONITOR:
+    use: True

@@ -1,0 +1,46 @@
+BASE_TASK_CONFIG_PATH: habitat_extensions/config/vlnce_global_reasoning_task.yaml
+
+USE_CPU: False
+SIMULATOR_GPU_ID: 0
+TORCH_GPU_ID: 0
+NUM_PROCESSES: 1
+
+TENSORBOARD_DIR: data/out/dagger/tensorboard_dirs/cma_reasoning_global_exp
+CHECKPOINT_FOLDER: data/out/dagger/checkpoints/cma_reasoning_global_exp
+EVAL_CKPT_PATH_DIR: data/out/dagger/checkpoints/cma_reasoning_global_exp
+VIDEO_DIR: data/out/dagger/videos/cma_reasoning_global_exp
+VIDEO_OPTION: [] # ["disk"]
+LOG_FILE: "dagger_cma_reasoning_global_exp.log"
+
+TRAINER_NAME: "dagger" 
+ENV_NAME:  "VLNCEDaggerEnv" 
+
+EVAL:
+  USE_CKPT_CONFIG: False
+  SPLIT: val_unseen
+  EPISODE_COUNT: 100
+
+DAGGER:
+  ITERATIONS: 1
+  EPOCHS: 45
+  # reduce parameter update_size for testing purposes
+  UPDATE_SIZE: 1500
+  BATCH_SIZE: 1
+  P: 1.0
+  
+  # Trajectory database
+  PRELOAD_LMDB_FEATURES: False
+  LMDB_RESUME: False
+  LMDB_FEATURES_DIR: data/trajectories_dirs/cma_reasoning/global_trajectories
+  LMDB_PROGRESS_FILE: data/trajectories_dirs/cma_reasoning/global_progress.txt
+  LMDB_COMMIT_FREQUENCY: 200
+
+MODEL:
+  INSTRUCTION_ENCODER:
+    bidirectional: True
+  
+  PROGRESS_MONITOR:
+    use: True
+
+  CMA:
+    use: True

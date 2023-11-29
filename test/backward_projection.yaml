@@ -1,0 +1,67 @@
+ENVIRONMENT:
+  MAX_EPISODE_STEPS: 500
+  ITERATOR_OPTIONS:
+    SHUFFLE: True
+SIMULATOR:
+  TYPE: Sim-v0
+  AGENT_0:
+    SENSORS: [
+      RGB_SENSOR, DEPTH_SENSOR
+    ]
+  DEPTH_SENSOR:
+    HEIGHT: 224
+    WIDTH: 224
+    HFOV: 90
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: False
+    ORIENTATION: [0.0, 0.0, 0.0]
+    POSITION: [0, 0.0, 0]
+    TYPE: HabitatSimDepthSensor
+  FORWARD_STEP_SIZE: 0.25
+  TURN_ANGLE: 15
+  HABITAT_SIM_V0:
+    GPU_DEVICE_ID: 0
+# ------------------------------------------------------------------------------
+# Task 
+TASK:
+  TYPE: Nav-v0
+  SUCCESS_DISTANCE: 3.0
+  SENSORS: [
+  ]
+  POSSIBLE_ACTIONS: [
+    STOP,
+    MOVE_FORWARD,
+    TURN_LEFT,
+    TURN_RIGHT
+  ]
+  MEASUREMENTS: [
+  ]
+DATASET:
+  TYPE: VLN-CE-v1
+  SPLIT: train
+  DATA_PATH: ../data/datasets/vlnce/R2R_VLNCE_v1-2_preprocessed/{split}/{split}.json.gz
+  SCENES_DIR: ../data/scene_datasets/
+# ------------------------------------------------------------------------------
+# Back projection 
+PROJECTION_MODULE:
+  x_range: 
+    min: -1.5
+    max: 1.5
+    resolution: 0.1
+  y_range:
+    min: 0.2
+    max: 1.5
+    resolution: 0.1
+  z_range: 
+    min: -3.0
+    max: 0.0
+    resolution: 0.1
+# ------------------------------------------------------------------------------
+SIMULATOR_GPU_ID: 0
+TORCH_GPU_ID: 0
+NUM_PROCESSES: 1
+OUT_DIR: ../data/out/backward_projection/
+LOG_FILE: "backward_projection.log"
+LOG_UPDATE: 1
+NUM_EPISODES: 5

@@ -1,0 +1,86 @@
+# ------------------------------------------------------------------------------
+# Experiment configuration
+# ------------------------------------------------------------------------------
+BASE_TASK_CONFIG_PATH: habitat_extensions/config/pointgoal_task.yaml
+
+SIMULATOR_GPU_ID: 0
+TORCH_GPU_ID: 0
+NUM_PROCESSES: 2
+
+TENSORBOARD_DIR: data/out/ppo/tensorboard_dirs/seq2seq_local
+EVAL_CKPT_PATH_DIR: data/out/ppo/checkpoints/seq2seq_local
+CHECKPOINT_FOLDER: data/out/ppo/checkpoints/seq2seq_local
+LOAD_FROM_CKPT: False
+LOAD_CKPT_FROM: data/out/ppo/checkpoints/seq2seq_local/ckpt.0.pth
+CHECKPOINT_INTERVAL: 250
+LOG_INTERVAL: 50
+STATS_FILE: data/out/ppo/stats/seq2seq_local
+LOG_FILE: "ppo_pointgoal.log"
+VIDEO_DIR: data/out/ppo/videos/seq2seq_local
+VIDEO_OPTION: [] # ["disk"]
+# ------------------------------------------------------------------------------
+# Training details
+# ------------------------------------------------------------------------------
+NUM_UPDATES: 5000
+TRAINER_NAME: "local_ppo" 
+ENV_NAME:  "RelativePPORLEnv" 
+SENSORS: ["RGB_SENSOR", "DEPTH_SENSOR"]
+# ------------------------------------------------------------------------------
+# Evaluation details
+# ------------------------------------------------------------------------------
+EVAL:
+  USE_CKPT_CONFIG: False
+  SPLIT: val
+  EPISODE_COUNT: -1
+# ------------------------------------------------------------------------------
+# Model details
+# ------------------------------------------------------------------------------
+MODEL:
+  POLICY: "seq2seq"
+  SEQ2SEQ:
+    use_prev_action: True
+  POINTGOAL_ENCODER:
+    use: True
+  PROGRESS_MONITOR:
+    use: False
+# ------------------------------------------------------------------------------
+# RL details
+# ------------------------------------------------------------------------------
+RL:
+  FORWARD_STEP_SIZE: 0.20
+  TURN_ANGLE_SIZE: 10
+  SUCCESS_MEASURE: "success"
+  SLACK_REWARD: -0.001
+  SUCCESS_REWARD: 2.5
+  DISTANCE_REWARD:
+    COMPUTE: True
+    MEASURE: "distance_to_goal"
+  COLLISION_COUNT_REWARD:
+    COMPUTE: False
+    MEASURE: "collision_count" 
+    THRESH: 5
+    REWARD: -0.001
+  COLLISION_DISTANCE_REWARD:
+    COMPUTE: False
+    MEASURE: "collision_distance" 
+    THRESH: 0.2
+    REWARD: -0.004
+  PPO: 
+    clip_param: 0.1
+    ppo_epoch: 4
+    # This was 4 in the paper
+    num_mini_batch: 2
+    value_loss_coef: 0.5
+    entropy_coef: 0.01
+    lr: 2.5e-4
+    eps: 1.e-5
+    max_grad_norm: 0.5
+    num_steps: 128
+    hidden_size: 512
+    use_gae: True
+    gamma: 0.99
+    tau: 0.95
+    use_linear_clip_decay: True
+    use_linear_lr_decay: True
+    reward_window_size: 50
+    use_normalized_advantage: False

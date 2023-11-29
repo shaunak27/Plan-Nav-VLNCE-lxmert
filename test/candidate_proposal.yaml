@@ -1,0 +1,476 @@
+ENVIRONMENT:
+  MAX_EPISODE_STEPS: 500
+  ITERATOR_OPTIONS:
+    SHUFFLE: False
+SIMULATOR:
+  TYPE: Sim-v0
+  AGENT_0:
+    SENSORS: [
+      RGB_SENSOR_0_DOWN, RGB_SENSOR_1_DOWN, RGB_SENSOR_2_DOWN,
+      RGB_SENSOR_3_DOWN, RGB_SENSOR_4_DOWN, RGB_SENSOR_5_DOWN,
+      RGB_SENSOR_6_DOWN, RGB_SENSOR_7_DOWN, RGB_SENSOR_8_DOWN,
+      RGB_SENSOR_9_DOWN, RGB_SENSOR_10_DOWN, RGB_SENSOR_11_DOWN,
+      RGB_SENSOR_12, RGB_SENSOR_13, RGB_SENSOR_14,
+      RGB_SENSOR_15, RGB_SENSOR_16, RGB_SENSOR_17,
+      RGB_SENSOR_18, RGB_SENSOR_19, RGB_SENSOR_20,
+      RGB_SENSOR_21, RGB_SENSOR_22, RGB_SENSOR_23,
+      RGB_SENSOR_24_UP, RGB_SENSOR_25_UP, RGB_SENSOR_26_UP,
+      RGB_SENSOR_27_UP, RGB_SENSOR_28_UP, RGB_SENSOR_29_UP,
+      RGB_SENSOR_30_UP, RGB_SENSOR_31_UP, RGB_SENSOR_32_UP,
+      RGB_SENSOR_33_UP, RGB_SENSOR_34_UP, RGB_SENSOR_35_UP,
+      DEPTH_SENSOR_12, DEPTH_SENSOR_13, DEPTH_SENSOR_14,
+      DEPTH_SENSOR_15, DEPTH_SENSOR_16, DEPTH_SENSOR_17,
+      DEPTH_SENSOR_18, DEPTH_SENSOR_19, DEPTH_SENSOR_20,
+      DEPTH_SENSOR_21, DEPTH_SENSOR_22, DEPTH_SENSOR_23,
+    ]
+  FORWARD_STEP_SIZE: 0.25
+  TURN_ANGLE: 15
+  HABITAT_SIM_V0:
+    GPU_DEVICE_ID: 0
+  RGB_SENSOR_0_DOWN:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_0_down"
+    ORIENTATION: [-0.5236, 0.0, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_1_DOWN:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_1_down"
+    ORIENTATION: [-0.5236, 5.7596, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_2_DOWN:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_2_down"
+    ORIENTATION: [-0.5236, 5.2359, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_3_DOWN:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_3_down"
+    ORIENTATION: [-0.5236, 4.7124, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_4_DOWN:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_4_down"
+    ORIENTATION: [-0.5263, 4.1888, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_5_DOWN:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_5_down"
+    ORIENTATION: [-0.5236, 3.6652, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_6_DOWN:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_6_down"
+    ORIENTATION: [-0.5236, 3.1415, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_7_DOWN:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_7_down"
+    ORIENTATION: [-0.5236, 2.6179, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_8_DOWN:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_8_down"
+    ORIENTATION: [-0.5236, 2.0944, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_9_DOWN:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_9_down"
+    ORIENTATION: [-0.5236, 1.5708, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_10_DOWN:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_10_down"
+    ORIENTATION: [-0.5236, 1.0472, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_11_DOWN:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_11_down"
+    ORIENTATION: [-0.5236, 0.5236, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_12:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_12"
+    ORIENTATION: [0.0, 0.0, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_13:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_13"
+    ORIENTATION: [0.0, 5.7596, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_14:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_14"
+    ORIENTATION: [0.0, 5.2359, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_15:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_15"
+    ORIENTATION: [0.0, 4.7124, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_16:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_16"
+    ORIENTATION: [0.0, 4.1888, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_17:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_17"
+    ORIENTATION: [0.0, 3.6652, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_18:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_18"
+    ORIENTATION: [0.0, 3.1415, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_19:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_19"
+    ORIENTATION: [0.0, 2.6179, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_20:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_20"
+    ORIENTATION: [0.0, 2.0944, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_21:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_21"
+    ORIENTATION: [0.0, 1.5708, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_22:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_22"
+    ORIENTATION: [0.0, 1.0472, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_23:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_23"
+    ORIENTATION: [0.0, 0.5236, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_24_UP:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_24_up"
+    ORIENTATION: [0.5236, 0.0, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_25_UP:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_25_up"
+    ORIENTATION: [0.5236, 5.7596, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_26_UP:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_26_up"
+    ORIENTATION: [0.5236, 5.2359, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_27_UP:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_27_up"
+    ORIENTATION: [0.5236, 4.7124, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_28_UP:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_28_up"
+    ORIENTATION: [0.5263, 4.1888, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_29_UP:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_29_up"
+    ORIENTATION: [0.5236, 3.6652, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_30_UP:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_30_up"
+    ORIENTATION: [0.5236, 3.1415, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_31_UP:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_31_up"
+    ORIENTATION: [0.5236, 2.6179, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_32_UP:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_32_up"
+    ORIENTATION: [0.5236, 2.0944, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_33_UP:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_33_up"
+    ORIENTATION: [0.5236, 1.5708, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_34_UP:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_34_up"
+    ORIENTATION: [0.5236, 1.0472, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  RGB_SENSOR_35_UP:
+    TYPE: HabitatSimRGBSensor
+    UUID: "rgb_35_up"
+    ORIENTATION: [0.5236, 0.5236, 0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+  DEPTH_SENSOR_12:
+    TYPE: HabitatSimDepthSensor
+    UUID: "depth_12"
+    ORIENTATION: [0.0, 0.0, 0.0]
+    POSITION: [0.0,0.0,0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: True
+  DEPTH_SENSOR_13:
+    TYPE: HabitatSimDepthSensor
+    UUID: "depth_13"
+    ORIENTATION: [0.0, 5.7596, 0.0]
+    POSITION: [0.0,0.0,0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: True
+  DEPTH_SENSOR_14:
+    TYPE: HabitatSimDepthSensor
+    UUID: "depth_14"
+    ORIENTATION: [0.0, 5.2359, 0.0]
+    POSITION: [0.0,0.0,0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: True
+  DEPTH_SENSOR_15:
+    TYPE: HabitatSimDepthSensor
+    UUID: "depth_15"
+    ORIENTATION: [0.0, 4.7124, 0.0]
+    POSITION: [0.0,0.0,0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: True
+  DEPTH_SENSOR_16:
+    TYPE: HabitatSimDepthSensor
+    UUID: "depth_16"
+    ORIENTATION: [0.0, 4.1888, 0.0]
+    POSITION: [0.0,0.0,0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: True
+  DEPTH_SENSOR_17:
+    TYPE: HabitatSimDepthSensor
+    UUID: "depth_17"
+    ORIENTATION: [0.0, 3.6652, 0.0]
+    POSITION: [0.0,0.0,0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: True
+  DEPTH_SENSOR_18:
+    TYPE: HabitatSimDepthSensor
+    UUID: "depth_18"
+    ORIENTATION: [0.0, 3.1415, 0.0]
+    POSITION: [0.0,0.0,0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: True
+  DEPTH_SENSOR_19:
+    TYPE: HabitatSimDepthSensor
+    UUID: "depth_19"
+    ORIENTATION: [0.0, 2.6179, 0.0]
+    POSITION: [0.0,0.0,0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: True
+  DEPTH_SENSOR_20:
+    TYPE: HabitatSimDepthSensor
+    UUID: "depth_20"
+    ORIENTATION: [0.0, 2.0944, 0.0]
+    POSITION: [0.0,0.0,0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: True
+  DEPTH_SENSOR_21:
+    TYPE: HabitatSimDepthSensor
+    UUID: "depth_21"
+    ORIENTATION: [0.0, 1.5708, 0.0]
+    POSITION: [0.0,0.0,0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: True
+  DEPTH_SENSOR_22:
+    TYPE: HabitatSimDepthSensor
+    UUID: "depth_22"
+    ORIENTATION: [0.0, 1.0472, 0.0]
+    POSITION: [0.0,0.0,0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: True
+  DEPTH_SENSOR_23:
+    TYPE: HabitatSimDepthSensor
+    UUID: "depth_23"
+    ORIENTATION: [0.0, 0.5236, 0.0]
+    POSITION: [0.0,0.0,0.0]
+    HFOV: 90
+    WIDTH: 224
+    HEIGHT: 224
+    MAX_DEPTH: 10.0
+    MIN_DEPTH: 0.0
+    NORMALIZE_DEPTH: True
+# ------------------------------------------------------------------------------
+# Task 
+TASK:
+  TYPE: Nav-v0
+  SUCCESS_DISTANCE: 3.0
+  SENSORS: [
+  ]
+  POSSIBLE_ACTIONS: [
+    STOP,
+    MOVE_FORWARD,
+    TURN_LEFT,
+    TURN_RIGHT
+  ]
+  MEASUREMENTS: [
+  ]
+DATASET:
+  TYPE: PointNav-v1
+  SPLIT: train
+  DATA_PATH: ../data/datasets/pointnav/mp3d/v1/{split}/{split}.json.gz
+  SCENES_DIR: ../data/scene_datasets/
+# ------------------------------------------------------------------------------
+# Candidate Proposal Model 
+CANDIDATE_PROPOSAL:
+  use_gpu: True
+  gpu_id: 0
+  method: "use_train" # one of use_all, use_heuristic, use_train    
+  subgoal_nms_sigma: 1.0
+  subgoal_nms_thresh: 0.003
+  range_bins: 25 # 48
+  heading_bins: 48 # 96
+  heading_bins_offset: 2
+  range_bin_width: 0.4 # 0.21
+  max_subgoal_predictions: 5
+  camera:
+    cx: 111
+    cy: 111
+    hov: 90
+    delta_heading: 30
+    depth_scale: 10.0
+    angles: [
+      0.0, -30.0, -60.0, -90.0, -120.0, -150.0,
+      180.0, 150.0, 120.0, 90.0, 60.0, 30.0
+    ]
+  unet_weights_file: "../data/models/cp_epoch18.pth"
+# ------------------------------------------------------------------------------
+# Feature Extractor
+FEATURE_EXTRACTOR:
+  gpu_id: 0
+  arch: caffe
+  proto: ../data/models/ResNet-152-deploy.prototxt
+  model: ../data/models/ResNet-152-model.caffemodel
+  batch_size: 1
+  height: 224
+  width: 224
+  feat_size: 2048  
+# ------------------------------------------------------------------------------
+SIMULATOR_GPU_ID: 0
+TORCH_GPU_ID: 0
+NUM_PROCESSES: 1
+OUT_DIR: ../data/out/candidate_proposal/
+LOG_FILE: "candidate_proposal.log"
+LOG_UPDATE: 1
+NUM_EPISODES: 5

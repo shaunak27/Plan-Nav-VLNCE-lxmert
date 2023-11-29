@@ -1,0 +1,47 @@
+BASE_TASK_CONFIG_PATH: habitat_extensions/config/vlnce_local_task.yaml
+
+USE_CPU: True
+SIMULATOR_GPU_ID: 0
+TORCH_GPU_ID: 0
+NUM_PROCESSES: 1
+
+TENSORBOARD_DIR: data/out/dagger/tensorboard_dirs/seq2seq_global
+CHECKPOINT_FOLDER: data/out/dagger/checkpoints/seq2seq_global
+EVAL_CKPT_PATH_DIR: data/out/dagger/checkpoints/seq2seq_global
+VIDEO_DIR: data/out/dagger/videos/seq2seq_global
+VIDEO_OPTION: []
+LOG_FILE: "dagger_seq2seq_local.log"
+
+TRAINER_NAME: "dagger" 
+ENV_NAME:  "VLNCEDaggerEnv" 
+
+EVAL:
+  USE_CKPT_CONFIG: False
+  SPLIT: val_seen
+  EPISODE_COUNT: 100000
+
+DAGGER:
+  ITERATIONS: 1
+  EPOCHS: 15
+  # reduce parameter update_size for testing purposes
+  UPDATE_SIZE: 100
+  BATCH_SIZE: 1
+  P: 1.0
+  # TODO: address this
+  PRELOAD_LMDB_FEATURES: True
+  LMDB_FEATURES_DIR: data/trajectories_dirs/seq2seq/global_trajectories.lmdb
+
+MODEL:
+  # TODO: address this
+  INSTRUCTION_ENCODER:
+    use_pretrained_embeddings: True
+
+INFERENCE:
+  SPLIT: val_seen
+  CKPT_PATH: data/out/dagger/checkpoints/seq2seq_global/ckpt.14.pth 
+  PREDICTIONS_FILE: predictions.json  # where to save your agent's generated trajectories
+  USE_CKPT_CONFIG: False
+  INFERENCE_NONLEARNING: False
+  NONLEARNING:
+    AGENT: RandomAgent 
+

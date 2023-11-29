@@ -1,0 +1,77 @@
+ENVIRONMENT:
+  MAX_EPISODE_STEPS: 500
+  ITERATOR_OPTIONS:
+    SHUFFLE: False
+SIMULATOR:
+  TYPE: Sim-v0
+  AGENT_0:
+    SENSORS: [RGB_SENSOR, DEPTH_SENSOR]
+  FORWARD_STEP_SIZE: 0.25
+  TURN_ANGLE: 15
+  HABITAT_SIM_V0:
+    GPU_DEVICE_ID: 0
+  RGB_SENSOR:
+    WIDTH: 224
+    HEIGHT: 224
+  DEPTH_SENSOR:
+    WIDTH: 256
+    HEIGHT: 256
+TASK:
+  TYPE: WaypointTask-v0
+  SUCCESS_DISTANCE: 3.0
+  SENSORS: [
+    POINTGOAL_SENSOR,
+  ]
+  POINTGOAL_SENSOR:
+    GOAL_FORMAT: POLAR
+    DIMENSIONALITY: 2
+  GOAL_SENSOR_UUID: "pointgoal"
+  POSSIBLE_ACTIONS: [
+    STOP, 
+    MOVE_FORWARD, 
+    TURN_LEFT, 
+    TURN_RIGHT,
+  ]
+  MEASUREMENTS: [
+    COLLISION_DISTANCE,
+    COLLISION_COUNT,
+    DISTANCE_TO_GOAL,
+    TOP_DOWN_MAP,
+    NDTW,
+    SUCCESS,
+    SPL,
+    ORACLE_SUCCESS,
+    PATH_LENGTH,
+  ]
+  PATH_LENGTH:
+    TYPE: "PathLength"
+  SPL:
+    SUCCESS_DISTANCE: 3.0
+  COLLISION_DISTANCE:
+    TYPE: "CollisionDistance"
+  COLLISION_COUNT:
+    TYPE: "CollisionCount"
+  SUCCESS:
+    SUCCESS_DISTANCE: 3.0
+  ORACLE_SUCCESS:
+    TYPE: "OracleSuccess"
+    SUCCESS_DISTANCE: 3.0
+  NDTW:
+    TYPE: "NDTW"
+    SPLIT: "val_unseen"
+    FDTW: True
+    SUCCESS_DISTANCE: 3.0
+    GT_PATH: data/datasets/vlnce/R2R_VLNCE_v1-1_preprocessed/{split}/{split}_gt.json.gz
+DATASET:
+  TYPE: GPlannerDataset-v0
+  SPLIT: val_seen
+  DATA_PATH: data/datasets/vlnce/{split}/out.json.gz
+  SCENES_DIR: data/scene_datasets/
+SIMULATOR_GPU_ID: 0
+TORCH_GPU_ID: 0
+NUM_PROCESSES: 1
+# ------------------------------------------------------------------------------
+VIDEO_DIR: data/out/planner_v2-1
+LOG_FILE: "recorded_plans_planner_v2-1.log"
+LOG_UPDATE: 10
+VIDEO_OPTION: [] #["disk"] # options: "disk", "tensorboard"
