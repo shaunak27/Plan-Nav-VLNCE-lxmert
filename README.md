@@ -6,7 +6,7 @@ Follow the instructions in [VLN-CE](https://github.com/jacobkrantz/VLN-CE)
 - This code assumes that the scene data is in:
 ``` 
     data/datasets
-    data/scence_datasets
+    data/scene_datasets
 ```
 
 ## Datasets 
