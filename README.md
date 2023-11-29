@@ -66,7 +66,7 @@ Verify the planner generates a local path. Outputs should be generated to ``` da
 
 ## Trainers
 
-### Local Panner Trainer
+### Local Planner Trainer
 
 To train or evaluate the local planner run:
 ``` 
@@ -76,7 +76,7 @@ To train or evaluate the local planner run:
 ```
 The YAML file specifies all the information required to train the agent (dataset and model locations, training parameters, etc...).
 
-### Global Panner Trainer
+### Global Planner Trainer
 
 To train or evaluate the global planner using DAgger and Seq2Seq, run:
 ``` 
